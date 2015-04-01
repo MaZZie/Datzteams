@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="datzteams" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+
+    <object class="datzTeamsTeams" table="datzteams_teams" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
+        <field key="tag" dbtype="varchar" precision="15" phptype="string" default="" null="false" index="index" />
+        <field key="intern" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="deletedon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="skill" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
+        <field key="game" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="platform" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="esl" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="clanbase" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+
+        <composite alias="TeamPlayers" class="datzTeamsPlayers" local="id" foreign="teamid" cardinality="one" owner="local" />
+        <composite alias="TeamMatch" class="datzTeamsMatch" local="id" foreign="teamid" cardinality="one" owner="local" />
+
+        <aggregate alias="Game" class="datzTeamsGames" local="game" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Platform" class="datzTeamsPlatform" local="platform" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+    <object class="datzTeamsGames" table="datzteams_games" extends="xPDOSimpleObject">
+
+    	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
+    	<field key="shortname" dbtype="varchar" precision="10" phptype="string" default="" null="false" />
+
+    	<composite alias="Games" class="datzTeams" local="id" foreign="game" cardinality="one" owner="local" />
+    	<composite alias="Gamemode" class="datzTeamsGameMode" local="id" foreign="gameid" cardinality="one" owner="local" />
+    </object>
+
+    <object class="datzTeamsPlatforms" table="datzteams_platforms" extends="xPDOSimpleObject">
+
+    	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
+    	<field key="shortname" dbtype="varchar" precision="10" phptype="string" default="" null="false" />
+
+    	<composite alias="Platforms" class="datzTeams" local="id" foreign="platform" cardinality="one" owner="local" />
+
+    </object>
+
+    <object class="datzTeamsPlayers" table="datzteams_players" extends="xPDOSimpleObject">
+    	<field key="teamid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="player" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="index" />
+    	<field key="position" dbtype="varchar" precision="255" phptype="string" default="player" null="false" />
+    	<field key="about" dbtype="text" phptype="string" null="false" />
+    	<field key="sort" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="1" />
+    	<field key="rights" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
+    	<field key="joinon" dbtype="datetime" phptype="datetime" null="false" />
+    	<field key="lefton" dbtype="datetime" phptype="datetime" null="true" />
+
+    	<aggregate alias="User" class="modUser" local="player" foreign="id" cardinality="one" owner="foreign" />
+    	<aggregate alias="Team" class="datzTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+    <object class="datzTeamsMatch" table="datzteams_match" extends="xPDOSimpleObject">
+    	<field key="teamid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="gameid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="platformid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="opponent" dbtype="varchar" precision="50" phptype="string" default="" null="false" />
+    	<field key="opponenttag" dbtype="varchar" precision="15" phptype="string" default="" null="false" />
+    	<field key="opponentsite" dbtype="varchar" precision="255" phptype="string" default="" null="false" />
+    	<field key="date" dbtype="datetime" phptype="datetime" null="false" />
+    	<field key="league" dbtype="varchar" precision="255" phptype="string" default="" null="false" />
+    	<field key="leaguelink" dbtype="varchar" precision="255" phptype="string" default="" null="false" />
+    	<field key="report" dbtype="text" phptype="string" null="true" />
+
+    	<aggregate alias="Team" class="datzTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
+
+    	<composite alias="MatchPlayers" class="datzTeamsMatchPlayers" local="id" foreign="matchid" cardinality="one" owner="local" />
+    	<composite alias="MatchMaps" class="datzTeamsMatchPlayers" local="id" foreign="matchid" cardinality="one" owner="local" />
+
+    </object>
+
+    <object class="datzTeamsMatchPlayers" table="datzteams_matchplayers" extends="xPDOSimpleObject">
+    	<field key="matchid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="player" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="true" index="fk" />
+    	<field key="opponentplayer" dbtype="varchar" precision="255" phptype="string" default="" null="true" />
+    	<field key="demo" dbtype="varchar" precision="255" phptype="string" default="player" null="false" />
+    	<field key="votes" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+
+    	<aggregate alias="Match" class="datzTeamsMatch" local="matchid" foreign="id" cardinality="one" owner="foreign" />
+    	<aggregate alias="User" class="modUser" local="player" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+    <object class="datzTeamsMatchMaps" table="datzteams_matchmaps" extends="xPDOSimpleObject">
+    	<field key="matchid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="mapid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+		<field key="sort" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="1" />    	<field key="ownscore" dbtype="int" precision="5" phptype="integer" attributes="unsigned" default="0" null="false" index="index" />
+		<field key="ownscore" dbtype="int" precision="5" phptype="integer" attributes="unsigned" default="0" null="false" index="index" />
+    	<field key="opponentscore" dbtype="int" precision="5" phptype="integer" attributes="unsigned" default="0" null="false" index="index" />
+    	<field key="screenshot" dbtype="varchar" precision="255" phptype="string" default="" null="false" />
+
+    	<aggregate alias="Match" class="datzTeamsMatch" local="matchid" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+    <object class="datzTeamsGameMaps" table="datzteams_gamemaps" extends="xPDOSimpleObject">
+    	<field key="gamemodeid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
+
+    	<aggregate alias="Gamemode" class="datzTeamsGameMode" local="gamemodeid" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+      <object class="datzTeamsGameMode" table="datzteams_gamemode" extends="xPDOSimpleObject">
+    	<field key="gameid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="fk" />
+    	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
+
+    	<aggregate alias="Game" class="datzTeamsGames" local="gameid" foreign="id" cardinality="one" owner="foreign" />
+    	<composite alias="Gamemaps" class="datzTeamsGameMaps" local="id" foreign="gamemodeid" cardinality="one" owner="local" />
+    </object>
+
+
+</model>
