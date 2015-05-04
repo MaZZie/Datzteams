@@ -1,6 +1,6 @@
 <?php
 /**
- * @package doodles
+ * @package datzteams
  */
 $datz = $modx->getService('datzteams','Datzteams',$modx->getOption('datzteams.core_path',null,$modx->getOption('core_path').'components/datzteams/').'model/datzteams/',$scriptProperties);
 if (!($datz instanceof Datzteams)) return '';
