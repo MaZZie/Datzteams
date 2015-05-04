@@ -2,10 +2,10 @@
 /**
  * Define the MODX path constants necessary for installation
  *
- * @package doodles
+ * @package Datzteams
  * @subpackage build
  */
-define('MODX_BASE_PATH', '/USBWebserver/root/modx/');
+ define('MODX_BASE_PATH','/path/to/modx/');
 define('MODX_CORE_PATH', MODX_BASE_PATH . 'core/');
 define('MODX_MANAGER_PATH', MODX_BASE_PATH . 'manager/');
 define('MODX_CONNECTORS_PATH', MODX_BASE_PATH . 'connectors/');
