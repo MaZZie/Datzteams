@@ -1,6 +1,6 @@
 <?php
 /**
- * @package doodles
+ * @package datzteams
  * @subpackage controllers
  */
 require_once dirname(__FILE__) . '/model/doodles/doodles.class.php';
