@@ -21,8 +21,8 @@ class DatzteamsIndexManagerController extends modExtraManagerController {
     public function process(array $scriptProperties = array()) {}
     public function getPageTitle() { return $this->modx->lexicon('datzteams'); }
     public function loadCustomCssJs() {
-        $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/datzteams.grid.js');
-        $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/datzteams_games.grid.js');
+        $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/teams.grid.js');
+        $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/games.grid.js');
         $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/home.panel.js');
         $this->addLastJavascript($this->datzteams->config['jsUrl'].'mgr/sections/index.js');
     }

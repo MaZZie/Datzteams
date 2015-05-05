@@ -3,9 +3,10 @@
  * @package datzteams
  * @subpackage controllers
  */
+ /*
 require_once dirname(__FILE__) . '/model/doodles/doodles.class.php';
 abstract class DoodlesManagerController extends modExtraManagerController {
-    /** @var Doodles $doodles */
+
     public $doodles;
     public function initialize() {
         $this->doodles = new Doodles($this->modx);
@@ -28,6 +29,7 @@ abstract class DoodlesManagerController extends modExtraManagerController {
  * @package doodles
  * @subpackage controllers
  */
+ /*
 class IndexManagerController extends DoodlesManagerController {
     public static function getDefaultController() { return 'home'; }
-}
+}*/

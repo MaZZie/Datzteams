@@ -20,31 +20,19 @@ Datzteams.panel.Home = function(config) {
                     ,border: false
                     ,bodyCssClass: 'panel-desc'
                 },{
-                    xtype: 'datzteams-grid-datzteams'
+                    xtype: 'datzteams-grid-datzteams-teams'
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]
-            },{ //Start Games tab
+            },{ //start Team tab
                 title: _('datzteams.games')
                 ,defaults: { autoHeight: true }
                 ,items: [{
-                    html: '<p>'+('Voeg hier je games toe')+'</p>'
+                    html: '<p>'+_('datzteams.management_desc')+'</p>'
                     ,border: false
                     ,bodyCssClass: 'panel-desc'
                 },{
-                    xtype: 'datzteams-grid-datzteams'
-                    ,cls: 'main-wrapper'
-                    ,preventRender: true
-                }]
-            },{ //Start Platform tap
-                title: _('datzteams.platforms')
-                ,defaults: { autoHeight: true }
-                ,items: [{
-                    html: '<p>'+('voeg hier je platforms toe')+'</p>'
-                    ,border: false
-                    ,bodyCssClass: 'panel-desc'
-                },{
-                    xtype: 'datzteams-grid-datzteams'
+                    xtype: 'datzteams-grid-datzteams-games'
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]
