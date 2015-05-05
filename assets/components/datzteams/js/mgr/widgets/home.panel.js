@@ -24,7 +24,7 @@ Datzteams.panel.Home = function(config) {
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]
-            },{ //start Team tab
+            },{ //start Games tab
                 title: _('datzteams.games')
                 ,defaults: { autoHeight: true }
                 ,items: [{
@@ -33,6 +33,18 @@ Datzteams.panel.Home = function(config) {
                     ,bodyCssClass: 'panel-desc'
                 },{
                     xtype: 'datzteams-grid-datzteams-games'
+                    ,cls: 'main-wrapper'
+                    ,preventRender: true
+                }]
+            },{ //start Platform tab
+                title: _('datzteams.platforms')
+                ,defaults: { autoHeight: true }
+                ,items: [{
+                    html: '<p>'+_('datzteams.management_desc')+'</p>'
+                    ,border: false
+                    ,bodyCssClass: 'panel-desc'
+                },{
+                    xtype: 'datzteams-grid-datzteams-platforms'
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]

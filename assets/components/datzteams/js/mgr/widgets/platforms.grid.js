@@ -1,10 +1,10 @@
-Datzteams.grid.Datzteams_games = function(config) {
+Datzteams.grid.Datzteams_platforms = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        id: 'datzteams-grid-datzteams-games'
+        id: 'datzteams-grid-datzteams-platforms'
         ,url: Datzteams.config.connectorUrl
-        ,baseParams: { action: 'mgr/datzteams/games/games_getList' }
-        ,save_action: 'mgr/datzteams/games/games_updateFromGrid'
+        ,baseParams: { action: 'mgr/datzteams/platforms/platforms_getList' }
+        ,save_action: 'mgr/datzteams/platforms/platforms_updateFromGrid'
         ,fields: [ 'id', 'name', 'shortname', 'menu']
         ,paging: true
         ,autosave: true
@@ -31,10 +31,10 @@ Datzteams.grid.Datzteams_games = function(config) {
         }]
         ,tbar: [{
             text: _('datzteams.datzteam_create')
-            ,handler: { xtype: 'datzteams-window-datzteam-games-create' ,blankValues: true }
+            ,handler: { xtype: 'datzteams-window-datzteam-platforms-create' ,blankValues: true }
         },'->',{
             xtype: 'textfield'
-            ,id: 'datzteams-games-search-filter'
+            ,id: 'datzteams-platforms-search-filter'
             ,emptyText: _('datzteams.search...')
             ,listeners: {
                 'change': {fn:this.search,scope:this}
@@ -52,9 +52,9 @@ Datzteams.grid.Datzteams_games = function(config) {
             }
         }]
     });
-    Datzteams.grid.Datzteams_games.superclass.constructor.call(this,config)
+    Datzteams.grid.Datzteams_platforms.superclass.constructor.call(this,config)
 };
-Ext.extend(Datzteams.grid.Datzteams_games,MODx.grid.Grid,{
+Ext.extend(Datzteams.grid.Datzteams_platforms,MODx.grid.Grid,{
     search: function(tf,nv,ov) {
         var s = this.getStore();
         s.baseParams.query = tf.getValue();
@@ -64,33 +64,33 @@ Ext.extend(Datzteams.grid.Datzteams_games,MODx.grid.Grid,{
     ,getMenu: function() {
         return [{
             text: _('datzteams.datzteam_update')
-            ,handler: this.updateDatzteamGames
+            ,handler: this.updateDatzteamPlatforms
         },'-',{
             text: _('datzteams.datzteam_remove')
-            ,handler: this.removeDatzteamGames
+            ,handler: this.removeDatzteamPlatforms
         }];
     }
-    ,updateDatzteamGames: function(btn,e) {
-        if (!this.updateDatzteamGamesWindow) {
-            this.updateDatzteamGamesWindow = MODx.load({
-                xtype: 'datzteams-window-datzteam-games-update'
+    ,updateDatzteamPlatforms: function(btn,e) {
+        if (!this.updateDatzteamPlatformsWindow) {
+            this.updateDatzteamPlatformsWindow = MODx.load({
+                xtype: 'datzteams-window-datzteam-platforms-update'
                 ,record: this.menu.record
                 ,listeners: {
                     'success': {fn:this.refresh,scope:this}
                 }
             });
         }
-        this.updateDatzteamGamesWindow.setValues(this.menu.record);
-        this.updateDatzteamGamesWindow.show(e.target);
+        this.updateDatzteamPlatformsWindow.setValues(this.menu.record);
+        this.updateDatzteamPlatformsWindow.show(e.target);
     }
 
-    ,removeDatzteamGames: function() {
+    ,removeDatzteamPlatforms: function() {
         MODx.msg.confirm({
             title: _('datzteams.datzteam_remove')
             ,text: _('datzteams.datzteam_remove_confirm')
             ,url: this.config.url
             ,params: {
-                action: 'mgr/datzteams/games/games_remove'
+                action: 'mgr/datzteams/platforms/platforms_remove'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -99,16 +99,16 @@ Ext.extend(Datzteams.grid.Datzteams_games,MODx.grid.Grid,{
         });
     }
 });
-Ext.reg('datzteams-grid-datzteams-games',Datzteams.grid.Datzteams_games);
+Ext.reg('datzteams-grid-datzteams-platforms',Datzteams.grid.Datzteams_platforms);
 
 
-Datzteams.window.CreateDatzteamGames = function(config) {
+Datzteams.window.CreateDatzteamPlatforms = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        title: ('Create Game')
+        title: ('Create Platform')
         ,url: Datzteams.config.connectorUrl
         ,baseParams: {
-            action: 'mgr/datzteams/games/games_create'
+            action: 'mgr/datzteams/platforms/platforms_create'
         }
         ,fields: [{
             xtype: 'textfield'
@@ -124,26 +124,26 @@ Datzteams.window.CreateDatzteamGames = function(config) {
             ,anchor: '100%'
         }]
     });
-    Datzteams.window.CreateDatzteamGames.superclass.constructor.call(this,config);
+    Datzteams.window.CreateDatzteamPlatforms.superclass.constructor.call(this,config);
 };
-Ext.extend(Datzteams.window.CreateDatzteamGames,MODx.Window);
-Ext.reg('datzteams-window-datzteam-games-create',Datzteams.window.CreateDatzteamGames);
+Ext.extend(Datzteams.window.CreateDatzteamPlatforms,MODx.Window);
+Ext.reg('datzteams-window-datzteam-platforms-create',Datzteams.window.CreateDatzteamPlatforms);
 
 
-Datzteams.window.UpdateDatzteamGames = function(config) {
+Datzteams.window.UpdateDatzteamPlatforms = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         title: _('datzteams.datzteam_update')
         ,url: Datzteams.config.connectorUrl
         ,baseParams: {
-            action: 'mgr/datzteams/games/games_update'
+            action: 'mgr/datzteams/platforms/platforms_update'
         }
         ,fields: [{
             xtype: 'hidden'
             ,name: 'id'
         },{
             xtype: 'textfield'
-            ,fieldLabel: ('Game')
+            ,fieldLabel: ('Platform')
             ,name: 'name'
             ,anchor: '100%'
         },{
@@ -153,7 +153,7 @@ Datzteams.window.UpdateDatzteamGames = function(config) {
             ,anchor: '100%'
         }]
     });
-    Datzteams.window.UpdateDatzteamGames.superclass.constructor.call(this,config);
+    Datzteams.window.UpdateDatzteamPlatforms.superclass.constructor.call(this,config);
 };
-Ext.extend(Datzteams.window.UpdateDatzteamGames,MODx.Window);
-Ext.reg('datzteams-window-datzteam-games-update',Datzteams.window.UpdateDatzteamGames);
+Ext.extend(Datzteams.window.UpdateDatzteamPlatforms,MODx.Window);
+Ext.reg('datzteams-window-datzteam-platforms-update',Datzteams.window.UpdateDatzteamPlatforms);

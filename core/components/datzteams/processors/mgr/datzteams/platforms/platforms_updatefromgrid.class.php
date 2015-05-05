@@ -1,10 +1,10 @@
 <?php
-require_once (dirname(__FILE__).'/games_update.class.php');
+require_once (dirname(__FILE__).'/platforms_update.class.php');
 /**
  * @package datzteams
  * @subpackage processors
  */
-class DatzteamGamesUpdateFromGridProcessor extends DatzteamGamesUpdateProcessor {
+class DatzteamPlatformsUpdateFromGridProcessor extends DatzteamPlatformsUpdateProcessor {
     public function initialize() {
         $data = $this->getProperty('data');
         if (empty($data)) return $this->modx->lexicon('invalid_data');
@@ -16,4 +16,4 @@ class DatzteamGamesUpdateFromGridProcessor extends DatzteamGamesUpdateProcessor 
         return parent::initialize();
     }
 }
-return 'DatzteamGamesUpdateFromGridProcessor';
+return 'DatzteamPlatformsUpdateFromGridProcessor';

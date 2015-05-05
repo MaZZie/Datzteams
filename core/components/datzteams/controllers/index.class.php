@@ -23,6 +23,7 @@ class DatzteamsIndexManagerController extends modExtraManagerController {
     public function loadCustomCssJs() {
         $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/teams.grid.js');
         $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/games.grid.js');
+        $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/platforms.grid.js');
         $this->addJavascript($this->datzteams->config['jsUrl'].'mgr/widgets/home.panel.js');
         $this->addLastJavascript($this->datzteams->config['jsUrl'].'mgr/sections/index.js');
     }
