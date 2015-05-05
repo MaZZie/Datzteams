@@ -25,6 +25,7 @@ $_lang['datzteams.datzteam_err_data'] = 'Invalid data.';
 $_lang['datzteams.datzteam_create'] = 'Create New Team';
 $_lang['datzteams.datzteam_remove'] = 'Remove Team';
 $_lang['datzteams.datzteam_remove_confirm'] = 'Are you sure you want to remove this team?';
+$_lang['datzteams.datzteam_manage'] = 'Manage Team';
 $_lang['datzteams.datzteam_update'] = 'Update Team';
 $_lang['datzteams.downloads'] = 'Downloads';
 $_lang['datzteams.intern'] = 'Own team';

@@ -3,8 +3,8 @@ Datzteams.grid.Datzteams_teams = function(config) {
     Ext.applyIf(config,{
         id: 'datzteams-grid-datzteams-teams'
         ,url: Datzteams.config.connectorUrl
-        ,baseParams: { action: 'mgr/datzteams/teams_getList' }
-        ,save_action: 'mgr/datzteams/teams_updateFromGrid'
+        ,baseParams: { action: 'mgr/datzteams/teams/teams_getList' }
+        ,save_action: 'mgr/datzteams/teams/teams_updateFromGrid'
         ,fields: ['id','name','tag','intern','skill','game','platform','clanbase','esl','menu']
         ,paging: true
         ,autosave: true
@@ -69,6 +69,9 @@ Ext.extend(Datzteams.grid.Datzteams_teams,MODx.grid.Grid,{
     }
     ,getMenu: function() {
         return [{
+            text: _('datzteams.datzteam_manage')
+            ,handler: this.manageDatzteam
+        },'-',{
             text: _('datzteams.datzteam_update')
             ,handler: this.updateDatzteam
         },'-',{
@@ -89,14 +92,16 @@ Ext.extend(Datzteams.grid.Datzteams_teams,MODx.grid.Grid,{
         this.updateDatzteamWindow.setValues(this.menu.record);
         this.updateDatzteamWindow.show(e.target);
     }
-
+    ,manageDatzteam: function() {
+        location.href = '?a=teammanager&namespace=datzteams&team='+this.menu.record.id;
+    }
     ,removeDatzteam: function() {
         MODx.msg.confirm({
             title: _('datzteams.datzteam_remove')
             ,text: _('datzteams.datzteam_remove_confirm')
             ,url: this.config.url
             ,params: {
-                action: 'mgr/datzteams/teams_remove'
+                action: 'mgr/datzteams/teams/teams_remove'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -114,7 +119,7 @@ Datzteams.window.CreateDatzteam = function(config) {
         title: _('datzteams.datzteam_create')
         ,url: Datzteams.config.connectorUrl
         ,baseParams: {
-            action: 'mgr/datzteams/teams_create'
+            action: 'mgr/datzteams/teams/teams_create'
         }
         ,fields: [{
             xtype: 'textfield'
@@ -160,7 +165,7 @@ Datzteams.window.UpdateDatzteam = function(config) {
         title: _('datzteams.datzteam_update')
         ,url: Datzteams.config.connectorUrl
         ,baseParams: {
-            action: 'mgr/datzteams/teams_update'
+            action: 'mgr/datzteams/teams/teams_update'
         }
         ,fields: [{
             xtype: 'hidden'

@@ -17,7 +17,7 @@ class DatzteamsGamesGetListProcessor extends modObjectGetListProcessor {
         if (!empty($query)) {
             $c->where(array(
                 'name:LIKE' => '%'.$query.'%',
-                'OR:tag:LIKE' => '%'.$query.'%',
+                'OR:shortname:LIKE' => '%'.$query.'%',
             ));
         }
         return $c;

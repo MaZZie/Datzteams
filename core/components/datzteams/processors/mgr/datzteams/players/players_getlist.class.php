@@ -5,22 +5,24 @@
  * @package datzteams
  * @subpackage processors
  */
-class DatzteamsPlatformsGetListProcessor extends modObjectGetListProcessor {
-    public $classKey = 'datzTeamsPlatforms';
+class DatzteamsPlayersGetListProcessor extends modObjectGetListProcessor {
+    public $classKey = 'datzTeamsPlayers';
     public $languageTopics = array('datzteams:default');
-    public $defaultSortField = 'name';
+    public $defaultSortField = 'sort';
     public $defaultSortDirection = 'ASC';
     public $objectType = 'datzteams.datzteam';
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $query = $this->getProperty('query');
+        $c->leftJoin('modUser', 'User');
         if (!empty($query)) {
             $c->where(array(
-                'name:LIKE' => '%'.$query.'%',
-                'OR:shortname:LIKE' => '%'.$query.'%',
+                'datzTeamsPlayers.teamid' => $_REQUEST['team'],
+                'datzTeamsPlayers.lefton' => NULL,
             ));
         }
+        $c->select(array('datzTeamsPlayers.*', 'User.username'));
         return $c;
     }
 }
-return 'DatzteamsPlatformsGetListProcessor';
+return 'DatzteamsPlayersGetListProcessor';
