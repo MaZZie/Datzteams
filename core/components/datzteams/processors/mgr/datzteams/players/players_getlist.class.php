@@ -17,11 +17,15 @@ class DatzteamsPlayersGetListProcessor extends modObjectGetListProcessor {
         $c->leftJoin('modUser', 'User');
         if (!empty($query)) {
             $c->where(array(
-                'datzTeamsPlayers.teamid' => $_REQUEST['team'],
-                'datzTeamsPlayers.lefton' => NULL,
+                'User.username:LIKE' => '%'.$query.'%',
+                'OR:position:LIKE' => '%'.$query.'%',
             ));
         }
         $c->select(array('datzTeamsPlayers.*', 'User.username'));
+        $c->where(array(
+            'datzTeamsPlayers.teamid' => $_REQUEST['team'],
+            'datzTeamsPlayers.lefton' => NULL,
+        ));
         return $c;
     }
 }

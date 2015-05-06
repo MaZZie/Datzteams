@@ -6,7 +6,7 @@ Datzteams.grid.Datzteams_players = function(config) {
         ,baseParams: { action: 'mgr/datzteams/players/players_getList'
                       ,team: MODx.request.team}
         ,save_action: 'mgr/datzteams/players/players_updateFromGrid'
-        ,fields: [ 'id','username','position','menu']
+        ,fields: [ 'id','username','position','about','sort','menu']
         ,paging: true
         ,autosave: true
         ,remoteSort: true
@@ -29,6 +29,15 @@ Datzteams.grid.Datzteams_players = function(config) {
             ,sortable: true
             ,width: 120
             ,editor: { xtype: 'textfield' }
+        },{
+            header: ('Sort')
+            ,dataIndex: 'sort'
+            ,sortable: true
+            ,width: 80
+            ,editor: { xtype: 'numberfield',
+                        maxValue: 9,
+                        minValue: 1
+                        }
         }]
         ,tbar: [{
             text: ('Add Player')
@@ -108,6 +117,7 @@ Datzteams.window.CreateDatzteamPlayers = function(config) {
     Ext.applyIf(config,{
         title: ('Add player')
         ,url: Datzteams.config.connectorUrl
+        ,width: 550
         ,baseParams: {
             action: 'mgr/datzteams/players/players_create'
         }
@@ -130,6 +140,21 @@ Datzteams.window.CreateDatzteamPlayers = function(config) {
             ,name: 'position'
             ,allowBlank: 'false'
             ,anchor: '100%'
+        },{
+            xtype: 'htmleditor',
+            enableColors: false,
+            enableAlignments: false
+            ,fieldLabel: ('About')
+            ,name: 'about'
+            ,anchor: '100%'
+        },{
+            xtype: 'numberfield',
+           anchor: '100%',
+           name: 'Sort',
+           fieldLabel: 'sort',
+           value: 1,
+           minValue: 1,
+           maxValue: 9
         }]
     });
     Datzteams.window.CreateDatzteamPlayers.superclass.constructor.call(this,config);
@@ -143,6 +168,7 @@ Datzteams.window.UpdateDatzteamPlayers = function(config) {
     Ext.applyIf(config,{
         title: ('Update player')
         ,url: Datzteams.config.connectorUrl
+        ,width: 550
         ,baseParams: {
             action: 'mgr/datzteams/players/players_update'
         }
@@ -154,6 +180,21 @@ Datzteams.window.UpdateDatzteamPlayers = function(config) {
             ,fieldLabel: ('Posiition')
             ,name: 'position'
             ,anchor: '100%'
+        },{
+            xtype: 'htmleditor',
+            enableColors: false,
+            enableAlignments: false
+            ,fieldLabel: ('About')
+            ,name: 'about'
+            ,anchor: '100%'
+        },{
+            xtype: 'numberfield',
+           anchor: '100%',
+           name: 'Sort',
+           fieldLabel: 'sort',
+           value: 1,
+           minValue: 1,
+           maxValue: 9
         }]
     });
     Datzteams.window.UpdateDatzteamPlayers.superclass.constructor.call(this,config);

@@ -4,7 +4,7 @@ require_once (dirname(__FILE__).'/players_update.class.php');
  * @package datzteams
  * @subpackage processors
  */
-class DatzteamPlayersUpdateFromGridProcessor extends DatzteamPlsyersUpdateProcessor {
+class DatzteamPlayersUpdateFromGridProcessor extends DatzteamPlayersUpdateProcessor {
     public function initialize() {
         $data = $this->getProperty('data');
         if (empty($data)) return $this->modx->lexicon('invalid_data');

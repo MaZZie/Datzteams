@@ -7,7 +7,7 @@
         <field key="intern" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
         <field key="createdon" dbtype="datetime" phptype="datetime" null="false" />
         <field key="deletedon" dbtype="datetime" phptype="datetime" null="true" />
-        <field key="skill" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
+        <field key="skill" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
         <field key="game" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
         <field key="platform" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
         <field key="esl" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
@@ -44,7 +44,7 @@
     	<field key="player" dbtype="int" precision="10" phptype="integer" attributes="unsigned" default="0" null="false" index="index" />
     	<field key="position" dbtype="varchar" precision="255" phptype="string" default="player" null="false" />
     	<field key="about" dbtype="text" phptype="string" null="false" />
-    	<field key="sort" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="1" />
+    	<field key="sort" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" default="1" />
     	<field key="rights" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="false" default="0" />
     	<field key="joinon" dbtype="datetime" phptype="datetime" null="false" />
     	<field key="lefton" dbtype="datetime" phptype="datetime" null="true" />
