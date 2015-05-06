@@ -62,7 +62,7 @@ $xpdo_meta_map['datzTeamsTeams']= array (
     array (
       'dbtype' => 'tinyint',
       'precision' => '1',
-      'phptype' => 'boolean',
+      'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,

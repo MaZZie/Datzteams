@@ -5,7 +5,7 @@ Datzteams.grid.Datzteams_teams = function(config) {
         ,url: Datzteams.config.connectorUrl
         ,baseParams: { action: 'mgr/datzteams/teams/teams_getList' }
         ,save_action: 'mgr/datzteams/teams/teams_updateFromGrid'
-        ,fields: ['id','name','tag','intern','skill','game','platform','clanbase','esl','menu']
+        ,fields: ['id','name','tag','intern','skill','gamename','platformname','clanbase','esl','menu']
         ,paging: true
         ,autosave: true
         ,remoteSort: true
@@ -29,9 +29,21 @@ Datzteams.grid.Datzteams_teams = function(config) {
             ,width: 120
             ,editor: { xtype: 'textfield' }
         },{
+            header: ('Game')
+            ,dataIndex: 'gamename'
+            ,sortable: true
+            ,width: 100
+            //,editor: { xtype: 'datzteams-combo-games' }
+        },{
+            header: ('Platform')
+            ,dataIndex: 'platformname'
+            ,sortable: true
+            ,width: 100
+            //,editor: { xtype: 'textfield' }
+        },{
             header: _('datzteams.intern')
             ,dataIndex: 'intern'
-            ,sortable: false
+            ,sortable: true
             ,width: 100
             ,editor: { xtype: 'checkbox' }
         }]
@@ -151,13 +163,24 @@ Datzteams.window.CreateDatzteam = function(config) {
             ,name: 'esl'
             ,allowBlank: 'true'
             ,anchor: '100%'
+        },{
+            xtype: 'datzteams-combo-games'
+             ,fieldLabel: ('Game')
+             ,name: 'game'
+             ,hiddenName: 'game'
+             ,anchor: '100%'
+        },{
+            xtype: 'datzteams-combo-platforms'
+             ,fieldLabel: ('Platforms')
+             ,name: 'platform'
+             ,hiddenName: 'platform'
+             ,anchor: '100%'
         }]
     });
     Datzteams.window.CreateDatzteam.superclass.constructor.call(this,config);
 };
 Ext.extend(Datzteams.window.CreateDatzteam,MODx.Window);
 Ext.reg('datzteams-window-datzteam-create',Datzteams.window.CreateDatzteam);
-
 
 Datzteams.window.UpdateDatzteam = function(config) {
     config = config || {};
@@ -176,10 +199,22 @@ Datzteams.window.UpdateDatzteam = function(config) {
             ,name: 'name'
             ,anchor: '100%'
         },{
-            xtype: 'textarea'
+            xtype: 'textfield'
             ,fieldLabel: _('datzteams.tag')
             ,name: 'tag'
             ,anchor: '100%'
+        },{
+            xtype: 'datzteams-combo-games'
+             ,fieldLabel: ('Game')
+             ,name: 'game'
+             ,hiddenName: 'game'
+             ,anchor: '100%'
+        },{
+            xtype: 'datzteams-combo-platforms'
+             ,fieldLabel: ('Platforms')
+             ,name: 'platform'
+             ,hiddenName: 'platform'
+             ,anchor: '100%'
         }]
     });
     Datzteams.window.UpdateDatzteam.superclass.constructor.call(this,config);

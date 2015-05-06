@@ -1,1 +1,1 @@
-<li><strong>[[+name]]</strong> - ([[+tag]])</li>
+<li><strong>[[+name]]</strong> - ([[+tag]]) - [[+gamelongname]] - [[+platformlongname]]</li>

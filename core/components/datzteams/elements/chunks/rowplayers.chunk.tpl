@@ -1,1 +1,1 @@
-<li><strong>[[+player]]</strong> - ([[+position]])</li>
+--- [[+username]] - ([[+position]]) <br>

@@ -33,7 +33,7 @@ $xpdo_meta_map['datzTeamsGames']= array (
   array (
     'Games' => 
     array (
-      'class' => 'datzTeams',
+      'class' => 'datzTeamsTeams',
       'local' => 'id',
       'foreign' => 'game',
       'cardinality' => 'one',

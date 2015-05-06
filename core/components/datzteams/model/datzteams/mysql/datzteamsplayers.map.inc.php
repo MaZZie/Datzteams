@@ -94,7 +94,7 @@ $xpdo_meta_map['datzTeamsPlayers']= array (
     ),
     'Team' => 
     array (
-      'class' => 'datzTeams',
+      'class' => 'datzTeamsTeams',
       'local' => 'teamid',
       'foreign' => 'id',
       'cardinality' => 'one',

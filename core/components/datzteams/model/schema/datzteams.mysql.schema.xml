@@ -26,7 +26,7 @@
     	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
     	<field key="shortname" dbtype="varchar" precision="10" phptype="string" default="" null="false" />
 
-    	<composite alias="Games" class="datzTeams" local="id" foreign="game" cardinality="one" owner="local" />
+    	<composite alias="Games" class="datzTeamsTeams" local="id" foreign="game" cardinality="one" owner="local" />
     	<composite alias="Gamemode" class="datzTeamsGameMode" local="id" foreign="gameid" cardinality="one" owner="local" />
     </object>
 
@@ -35,7 +35,7 @@
     	<field key="name" dbtype="varchar" precision="255" phptype="string" default="" null="false" index="index" />
     	<field key="shortname" dbtype="varchar" precision="10" phptype="string" default="" null="false" />
 
-    	<composite alias="Platforms" class="datzTeams" local="id" foreign="platform" cardinality="one" owner="local" />
+    	<composite alias="Platforms" class="datzTeamsTeams" local="id" foreign="platform" cardinality="one" owner="local" />
 
     </object>
 
@@ -50,7 +50,7 @@
     	<field key="lefton" dbtype="datetime" phptype="datetime" null="true" />
 
     	<aggregate alias="User" class="modUser" local="player" foreign="id" cardinality="one" owner="foreign" />
-    	<aggregate alias="Team" class="datzTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
+    	<aggregate alias="Team" class="datzTeamsTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
 
     </object>
 
@@ -66,7 +66,7 @@
     	<field key="leaguelink" dbtype="varchar" precision="255" phptype="string" default="" null="false" />
     	<field key="report" dbtype="text" phptype="string" null="true" />
 
-    	<aggregate alias="Team" class="datzTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
+    	<aggregate alias="Team" class="datzTeamsTeams" local="teamid" foreign="id" cardinality="one" owner="foreign" />
 
     	<composite alias="MatchPlayers" class="datzTeamsMatchPlayers" local="id" foreign="matchid" cardinality="one" owner="local" />
     	<composite alias="MatchMaps" class="datzTeamsMatchPlayers" local="id" foreign="matchid" cardinality="one" owner="local" />
